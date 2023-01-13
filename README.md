@@ -144,3 +144,11 @@ quicksilverd tx distribution withdraw-rewards quickvaloper164kd2jgy4evt0zrl8z8nd
 ```
 for i in {1..10}; do quicksilverd status --node https://quicksilver-testnet.rpc.kjnodes.com/ | jq .SyncInfo.latest_block_height && quicksilverd status | jq .SyncInfo.latest_block_height; sleep 6; done
 ```
+
+```
+cd $HOME
+rm -rf mars
+git clone https://github.com/mars-protocol/hub.git && cd mars
+git fetch && git checkout v1.0.0-rc7
+make install
+```
