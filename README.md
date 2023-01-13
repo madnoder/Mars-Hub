@@ -39,7 +39,7 @@ marsd config keyring-backend test
 marsd init $NODENAME --chain-id $CHAIN_ID
 ```
 ```
-curl -o $HOME/.mars/config/genesis.json https://raw.githubusercontent.com/mars-protocol/networks/blob/main/ares-1/genesis.json
+curl -o $HOME/.mars/config/genesis.json https://raw.githubusercontent.com/mars-protocol/networks/main/ares-1/genesis.json
 ```
 
 ```
