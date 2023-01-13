@@ -21,9 +21,9 @@ sudo apt install curl build-essential git wget jq make gcc tmux chrony -y
 ```
 ```
 cd $HOME
-git clone https://github.com/mars-protocol/hub.git && cd hub
-git fetch origin --tags
-git checkout v1.0.0
+rm -rf hub
+git clone https://github.com/mars-protocol/hub.git && cd mars
+git checkout v1.0.0-rc7
 make install
 ```
 ```
@@ -39,11 +39,11 @@ marsd config keyring-backend test
 marsd init $NODENAME --chain-id $CHAIN_ID
 ```
 ```
-curl -o $HOME/.marsd/config/genesis.json https://raw.githubusercontent.com/mars-protocol/networks/blob/main/ares-1/genesis.json
+curl -o $HOME/.mars/config/genesis.json https://raw.githubusercontent.com/mars-protocol/networks/blob/main/ares-1/genesis.json
 ```
 
 ```
-marsd keys add $WALLET
+marsd keys add $WALLET --recover
 ```
 ```
 ```
