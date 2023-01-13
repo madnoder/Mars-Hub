@@ -1,7 +1,7 @@
 # Mars-Hub
 
 ```
-NODENAME=Mad
+NODENAME=<YOUR MONIKER>
 ```
 ```
 MARS_PORT=43
@@ -41,11 +41,8 @@ marsd init $NODENAME --chain-id $CHAIN_ID
 ```
 curl -o $HOME/.mars/config/genesis.json https://raw.githubusercontent.com/mars-protocol/networks/main/ares-1/genesis.json
 ```
-
 ```
 marsd keys add $WALLET --recover
-```
-```
 ```
 ```
 sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:43658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:43657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:4360\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:43656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":43660\"%" $HOME/.mars/config/config.toml && sed -i.bak -e "s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:4390\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:4391\"%; s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:4317\"%" $HOME/.mars/config/app.toml && sed -i.bak -e "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:43657\"%" $HOME/.mars/config/client.toml 
@@ -65,8 +62,6 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.mars/config/config.to
 ```
 ```
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0001umars\"/;" ~/.mars/config/app.toml
-```
-```
 ```
 ```
 sudo tee /etc/systemd/system/marsd.service > /dev/null <<EOF
@@ -112,43 +107,17 @@ marsd keys list
 marsd query bank balances $MARS_WALLET_ADDRESS
 ```  
 ```  
-quicksilverd tx staking create-validator \
-  --amount 50000000uqck \
-  --from $WALLET \
-  --commission-max-change-rate "0.01" \
-  --commission-max-rate "0.1" \
-  --commission-rate "0.07" \
-  --min-self-delegation "1" \
-  --pubkey  $(quicksilverd tendermint show-validator) \
-  --identity=B08700D1C239CD1A \
-  --website="https://github.com/madnoder" \
-  --details="Cosmos validator" \
-  --moniker $NODENAME \
-  --chain-id $QUICKSILVER_CHAIN_ID \
-  --security-contact="vova1node@gmail.com" \
-  --gas auto
+
 ```                  
 
 ```
-quicksilverd tx staking delegate $QUICKSILVER_VALOPER_ADDRESS 601330uqck --from=$WALLET --chain-id=$QUICKSILVER_CHAIN_ID --gas auto
-```
-```
-quicksilverd tx staking edit-validator \
-  --new-moniker="Mad as a hatter" \
-  --chain-id=quicksilver-1 \
-  --from=quick164kd2jgy4evt0zrl8z8nd3hspp777v8s290hnz
-```
-```
-quicksilverd tx distribution withdraw-rewards quickvaloper164kd2jgy4evt0zrl8z8nd3hspp777v8s5gp6at --from=quick164kd2jgy4evt0zrl8z8nd3hspp777v8s290hnz --commission --chain-id=$QUICKSILVER_CHAIN_ID
-```
-```
-for i in {1..10}; do quicksilverd status --node https://quicksilver-testnet.rpc.kjnodes.com/ | jq .SyncInfo.latest_block_height && quicksilverd status | jq .SyncInfo.latest_block_height; sleep 6; done
 ```
 
 ```
-cd $HOME
-rm -rf hub
-git clone https://github.com/mars-protocol/hub.git && cd mars
-git checkout v1.0.0-rc7
-make install
+sudo systemctl stop marsd
+sudo systemctl disable marsd
+sudo rm /etc/systemd/system/marsd* -rf
+sudo rm $(which marsd) -rf
+sudo rm $HOME/.mars* -rf
+sudo rm $HOME/hub -rf
 ```
