@@ -147,7 +147,7 @@ for i in {1..10}; do quicksilverd status --node https://quicksilver-testnet.rpc.
 
 ```
 cd $HOME
-rm -rf mars
+rm -rf hub
 git clone https://github.com/mars-protocol/hub.git && cd mars
 git fetch && git checkout v1.0.0-rc7
 make install
