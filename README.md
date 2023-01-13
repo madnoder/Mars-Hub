@@ -107,10 +107,33 @@ marsd keys list
 marsd query bank balances $MARS_WALLET_ADDRESS
 ```  
 ```  
-
+marsd tx staking create-validator \
+  --amount 4000000umars \
+  --from $WALLET \
+  --commission-max-change-rate "0.05" \
+  --commission-max-rate "0.2" \
+  --commission-rate "0.09" \
+  --min-self-delegation "1" \
+  --pubkey  $(marsd tendermint show-validator) \
+  --identity=<IDENITY> \
+  --website="https://" \
+  --details="Cosmos validator" \
+  --moniker $NODENAME \
+  --chain-id $MARS_CHAIN_ID \
+  --security-contact="12345@gmail.com" \
+  --gas-prices=0.01umars \
+  --gas-adjustment=1.5 \
+  --gas=auto \
+  -y
 ```                  
-
 ```
+marsd tx staking edit-validator \
+  --new-moniker="Mad as a hatter" \
+  --from $WALLET \
+  --gas-prices=0.01umars \
+  --gas-adjustment=1.5 \
+  --gas=auto \
+  -y
 ```
 
 ```
