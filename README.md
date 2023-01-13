@@ -22,7 +22,7 @@ sudo apt install curl build-essential git wget jq make gcc tmux chrony -y
 ```
 cd $HOME
 rm -rf hub
-git clone https://github.com/mars-protocol/hub.git && cd mars
+git clone https://github.com/mars-protocol/hub.git && cd hub
 git checkout v1.0.0-rc7
 make install
 ```
