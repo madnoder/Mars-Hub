@@ -2,7 +2,7 @@
 ## Mars Hub testnet goes live
 
 <div>
-  <img src="https://github.com/madnoder/madnoder/blob/main/Mars_protocol.jpeg" title="Mars protocol" alt="Mars" width="120" height="120"/>&nbsp;
+  <img src="https://github.com/madnoder/madnoder/blob/main/Mars_protocol.jpeg" title="Mars protocol" alt="Mars" width="140" height="140"/>&nbsp;
 </div>
 
 <a href="https://marsprotocol.io/" style="font-size: 30px;"> of link here </a>
@@ -57,8 +57,9 @@ mv addrbook.json ~/.mars/config
 marsd keys add $WALLET --recover
 ```
 ### use the faucet
-```
+
 <a href="https://faucet.marsprotocol.io/" style="font-size: 30px;"> Faucet here </a>
+
 ```
 sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:43658\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:43657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:4360\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:43656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":43660\"%" $HOME/.mars/config/config.toml && sed -i.bak -e "s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:4390\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:4391\"%; s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:4317\"%" $HOME/.mars/config/app.toml && sed -i.bak -e "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:43657\"%" $HOME/.mars/config/client.toml 
 ```
