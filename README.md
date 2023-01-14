@@ -135,6 +135,13 @@ marsd tx staking edit-validator \
   --gas=auto \
   -y
 ```
+```
+
+marsd tx staking delegate $MARS_VALOPER_ADDRESS 4000000umars --from=$WALLET --chain-id=$MARS_CHAIN_ID --gas-prices=0.01umars --gas-adjustment=1.5 --gas=auto
+```
+
+
+
 
 ```
 sudo systemctl stop marsd
