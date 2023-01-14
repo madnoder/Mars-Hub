@@ -42,6 +42,10 @@ marsd init $NODENAME --chain-id $CHAIN_ID
 curl -o $HOME/.mars/config/genesis.json https://raw.githubusercontent.com/mars-protocol/networks/main/ares-1/genesis.json
 ```
 ```
+wget -O addrbook.json https://github.com/madnoder/Mars-Hub/blob/main/addrbook.json --inet4-only
+mv addrbook.json ~/.mars/config
+```
+```
 marsd keys add $WALLET --recover
 ```
 ```
@@ -61,7 +65,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.mars/config/config.toml
 ```
 ```
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0001umars\"/;" ~/.mars/config/app.toml
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.000umars\"/;" ~/.mars/config/app.toml
 ```
 ```
 sudo tee /etc/systemd/system/marsd.service > /dev/null <<EOF
@@ -116,7 +120,7 @@ marsd tx staking create-validator \
   --min-self-delegation "1" \
   --pubkey  $(marsd tendermint show-validator) \
   --identity=<IDENITY> \
-  --website="https://" \
+  --website="https://systemd.run/" \
   --details="Cosmos validator" \
   --moniker $NODENAME \
   --chain-id $MARS_CHAIN_ID \
@@ -128,7 +132,7 @@ marsd tx staking create-validator \
 ```                  
 ```
 marsd tx staking edit-validator \
-  --new-moniker="Mad as a hatter" \
+  --new-moniker="new moniker here" \
   --from $WALLET \
   --gas-prices=0.01umars \
   --gas-adjustment=1.5 \
